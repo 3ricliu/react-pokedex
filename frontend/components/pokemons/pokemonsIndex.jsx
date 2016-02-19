@@ -1,14 +1,8 @@
 var React = require('react'),
     PokemonStore = require('../../stores/pokemon'),
-    FetchAllPokemons = require('../../util/apiUtil');
+    FetchAllPokemons = require('../../util/apiUtil'),
+    PokemonIndexItem = require('../pokemonIndexItem');
 
-var pokemonList = function(pokemons) {
-  var array = [];
-  for (var i=0; i<pokemons.length; i++) {
-    array.push(<li key={i}>{pokemons[i].name}</li>);
-  }
-  return array;
-};
 
 var PokemonsIndex = React.createClass({
   getInitialState: function() {
@@ -32,9 +26,9 @@ var PokemonsIndex = React.createClass({
   render: function() {
     return(
       <div>
-        <ul>
-          {pokemonList(this.state.pokemons)}
-        </ul>
+        {this.state.pokemons.map(function (pokemon) {
+          return <PokemonIndexItem key={pokemon.name} {...pokemon} />;
+        })}
       </div>
     );
   }

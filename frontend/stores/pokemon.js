@@ -25,6 +25,9 @@ PokemonStore.__onDispatch = function(dispatcherData){
   }
 };
 
+PokemonStore.find = function(id) {
+  return _pokemons[id-1];
+};
 
 var resetPokemons = function (payload) {
   _pokemons = {};
